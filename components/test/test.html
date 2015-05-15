@@ -1,0 +1,27 @@
+<element extends="div" name="my-div">
+  <script>
+    var template = document.currentScript.parentNode.querySelector('template');
+    
+    ({
+      readyCallback: function () {
+        this.__root = this.createShadowRoot();
+        this.__root.appendChild(template.content.cloneNODE());
+      }
+    });
+  </script>
+  <template>
+  <style>
+	  #container{
+		  width: 50px;
+		  height: 50px;
+      float: left;
+      position: absolute;
+		  background-color: #ffcc55;
+	  }
+  </style>
+  <div id="container">
+	  hallo
+    <!--<content select="h1"></content>-->
+  </div>
+</template>
+</element> 

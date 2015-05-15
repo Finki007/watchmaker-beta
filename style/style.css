@@ -1,0 +1,37 @@
+body{	
+	font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;	
+	margin: 0px;
+}
+
+input{
+	margin: 5px;
+}
+
+.label {
+	font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+	font-size: 20px;
+	margin: 5px;
+}
+
+.wrapper{
+	width: 75%;
+	height: 75%;
+	margin: auto;
+}
+
+#main-form{
+	background-color: lightsteelblue;
+}
+
+a{
+	text-decoration: underline;
+	color: red;
+}
+
+a:hover{
+	color: hotpink;
+}
+
+a:visited{
+	color: red;
+}
