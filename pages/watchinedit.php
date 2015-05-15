@@ -33,7 +33,6 @@ $(document).ready( xmltest );
   {
 	  tempi = i;
 		document.write("<div id=\"Layer" + tempi + "\" style=\"\"></div>");
-		i = tempi;
 		
 		var color = "#" + getValueOf('Layer', 'color', loadXMLString(temparray[tempi].outerHTML));
 		var x = 500; //getValueOf('Layer', 'x', loadXMLString(temparray[tempi].outerHTML));
@@ -52,14 +51,9 @@ $(document).ready( xmltest );
 		}
 		
 			align = (solveAlignment(align));
-		
-			i = tempi;
 			style[tempi] = "position: absolute; top: " + y + "px; left: " + x + "px; width: " +
 							width + "px; height: " + height + "px; background-color: " + color + "; transform: rotate(" +
 							rotation + "); transform-origin: " + align + "; " + path;
-		
-			i = tempi;
-			tempi = tempi+1;
   		}
 	}
 	
