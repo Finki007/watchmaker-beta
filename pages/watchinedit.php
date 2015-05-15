@@ -80,7 +80,8 @@ $(document).ready( xmltest );
 	
 	$(document).ready(function () {
 	setInterval(function () {
-		var dt = new Date();
+		//var dt = new Date();
+		var dt = new Date("October 13, 2014 12:00:00");
 		for (i = 0; i < style.length; i++){
 			$("#" + 'Layer' + i).attr('style', style[i].replace('{drm}', (dt.getMinutes() * 6) - 0 + "deg").replace('{drs}', (dt.getSeconds() * 6) - 180 + "deg").replace('{drh}', (dt.getHours() * 30) - 0 + "deg"));
 		}
