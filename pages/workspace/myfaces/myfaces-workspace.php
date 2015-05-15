@@ -4,8 +4,8 @@
     		"foo" => "bar",
     		"bar" => "foo",
 		];
-		include '../../WatchMaker/components/watch-card/watch-card.php';
-		include '../../WatchMaker/classes/database.php';
+		include '../components/watch-card/watch-card.php';
+		include '../classes/database.php';
 		
 		echo "<div style=\"display: block;\">";
 		$data = new clsDBAccess('root', '', 'localhost');
