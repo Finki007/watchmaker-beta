@@ -1,3 +1,6 @@
+<?php
+	include '../masterpage.php';
+?>
 <html>
 <head>
 	<?php
@@ -29,20 +32,33 @@ $(document).ready( xmltest );
 		
 		document.write("</head>");
 		document.write("<body style=\"background-color: #" + bodybg + "; margin: 0px;\">");
+	
+		for (i=0; i<60; i++){
+			var deg = 6 * (i + 1);
+			var clock = i + 1;
+			if (deg % 30 != 0){
+				document.write("<div style='position: absolute; top: 0px; text-align: center; left: 250px; width: 500px; height: 500px; font-size: 2em; color: white; transform: rotate(" + deg + "deg)'>" + "|" + "</div>");
+			}else {
+				document.write("<div style='position: absolute; top: 0px; text-align: center; left: 250px; width: 500px; height: 500px; font-size: 4em; color: white; transform: rotate(" + deg + "deg)'>" + "|" + "</div>");
+			}
+		}
 		
 		for (i=0;i<temparray.length;i++)
   		{
 		  	tempi = i;
 			
-			document.write("<div id=\"Layer" + tempi + "\" style=\"\"></div>");
+			document.write("<div id='Layer" + tempi + "' style=''></div>");
 			
 			i = tempi;
 			
+			var origin_y = 250;
+			var origin_x = 250;
+			
 			var color = "#" + getValueOf('Layer', 'color', loadXMLString(temparray[tempi].outerHTML));
-			var x = 500; //getValueOf('Layer', 'x', loadXMLString(temparray[tempi].outerHTML));
-			var y = 0; //getValueOf('Layer', 'y', loadXMLString(temparray[tempi].outerHTML));
 			var width = getValueOf('Layer', 'width', loadXMLString(temparray[tempi].outerHTML));
 			var height = getValueOf('Layer', 'height', loadXMLString(temparray[tempi].outerHTML));
+			var x = 500; //getValueOf('Layer', 'x', loadXMLString(temparray[tempi].outerHTML));
+			var y = 0; //getValueOf('Layer', 'y', loadXMLString(temparray[tempi].outerHTML));
 			var rotation = getValueOf('Layer', 'rotation', loadXMLString(temparray[tempi].outerHTML));
 			var align = getValueOf('Layer', 'alignment', loadXMLString(temparray[tempi].outerHTML));
 			var path = getValueOf('Layer', 'path', loadXMLString(temparray[tempi].outerHTML));
@@ -54,13 +70,23 @@ $(document).ready( xmltest );
 				path = "";
 			}
 			
-				align = (solveAlignment(align));
-				
-				i = tempi;
-	
-				style[tempi] = "position: absolute; top: " + y + "px; left: " + x + "px; width: " +
-								width + "px; height: " + height + "px; background-color: " + color + "; transform: rotate(" +
-								rotation + "); transform-origin: " + align + "; " + path;
+			if (align[1] == "c"){
+				x = x - width/2;
+			}
+			
+			if (align[0] == "b"){				
+				y = origin_y - height;
+			}else if (align[0] == "c"){
+				y = origin_y - height/2;
+			}
+			
+			align = (solveAlignment(align));
+			
+			i = tempi;
+
+			style[tempi] = "position: absolute; transform-origin: " + align + "; top: " + y + "px; left: " + x + "px; width: " +
+							width + "px; height: " + height + "px; background-color: " + color + "; transform: rotate(" +
+							rotation + "); " + path;
 								
 			i = tempi;
 			tempi = tempi+1;  
@@ -84,8 +110,8 @@ $(document).ready( xmltest );
 	
 	$(document).ready(function () {
 	setInterval(function () {
-		//var dt = new Date();
-		var dt = new Date("October 13, 2014 12:00:00");
+		var dt = new Date();
+		//var dt = new Date("October 13, 2014 12:00:00");
 		for (i = 0; i < style.length; i++){
 			$("#" + 'Layer' + i).attr('style', style[i].replace('{drm}', (dt.getMinutes() * 6) - 0 + "deg").replace('{drs}', (dt.getSeconds() * 6) - 180 + "deg").replace('{drh}', (dt.getHours() * 30) - 0 + "deg"));
 		}
