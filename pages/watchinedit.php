@@ -29,32 +29,42 @@ $(document).ready( xmltest );
 		
 		document.write("</head>");
 		document.write("<body style=\"background-color: #" + bodybg + "; margin: 0px;\">");
-		  for (i=0;i<temparray.length;i++)
-  {
-	  tempi = i;
-		document.write("<div id=\"Layer" + tempi + "\" style=\"\"></div>");
 		
-		var color = "#" + getValueOf('Layer', 'color', loadXMLString(temparray[tempi].outerHTML));
-		var x = 500; //getValueOf('Layer', 'x', loadXMLString(temparray[tempi].outerHTML));
-		var y = 0; //getValueOf('Layer', 'y', loadXMLString(temparray[tempi].outerHTML));
-		var width = getValueOf('Layer', 'width', loadXMLString(temparray[tempi].outerHTML));
-		var height = getValueOf('Layer', 'height', loadXMLString(temparray[tempi].outerHTML));
-		var rotation = getValueOf('Layer', 'rotation', loadXMLString(temparray[tempi].outerHTML));
-		var align = getValueOf('Layer', 'alignment', loadXMLString(temparray[tempi].outerHTML));
-		var path = getValueOf('Layer', 'path', loadXMLString(temparray[tempi].outerHTML));
-		
-		if (path != null){
-			color = "transparent";
-			path = "background-size: " + width + "px " + height + "px; background-image: url(../test-images/" + path + ");";
-		}else{
-			path = "";
+		for (i=0;i<temparray.length;i++)
+  		{
+		  	tempi = i;
+			
+			document.write("<div id=\"Layer" + tempi + "\" style=\"\"></div>");
+			
+			i = tempi;
+			
+			var color = "#" + getValueOf('Layer', 'color', loadXMLString(temparray[tempi].outerHTML));
+			var x = 500; //getValueOf('Layer', 'x', loadXMLString(temparray[tempi].outerHTML));
+			var y = 0; //getValueOf('Layer', 'y', loadXMLString(temparray[tempi].outerHTML));
+			var width = getValueOf('Layer', 'width', loadXMLString(temparray[tempi].outerHTML));
+			var height = getValueOf('Layer', 'height', loadXMLString(temparray[tempi].outerHTML));
+			var rotation = getValueOf('Layer', 'rotation', loadXMLString(temparray[tempi].outerHTML));
+			var align = getValueOf('Layer', 'alignment', loadXMLString(temparray[tempi].outerHTML));
+			var path = getValueOf('Layer', 'path', loadXMLString(temparray[tempi].outerHTML));
+			
+			if (path != null){
+				color = "transparent";
+				path = "background-size: " + width + "px " + height + "px; background-image: url(../test-images/" + path + ");";
+			}else{
+				path = "";
+			}
+			
+				align = (solveAlignment(align));
+				
+				i = tempi;
+	
+				style[tempi] = "position: absolute; top: " + y + "px; left: " + x + "px; width: " +
+								width + "px; height: " + height + "px; background-color: " + color + "; transform: rotate(" +
+								rotation + "); transform-origin: " + align + "; " + path;
+								
+			i = tempi;
+			tempi = tempi+1;  
 		}
-		
-			align = (solveAlignment(align));
-			style[tempi] = "position: absolute; top: " + y + "px; left: " + x + "px; width: " +
-							width + "px; height: " + height + "px; background-color: " + color + "; transform: rotate(" +
-							rotation + "); transform-origin: " + align + "; " + path;
-  		}
 	}
 	
 	function solveAlignment(align){
