@@ -1,3 +1,6 @@
+<?php
+	include 'masterpage.php';
+?>
 <html>
 	<head>
 		<title>

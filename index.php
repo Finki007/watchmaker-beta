@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <html>
 	<head>
 		<title>
@@ -37,6 +40,7 @@
 							  	</a>
 							  </p>";
 					}else{
+						$_SESSION["id"] = "hallo";
 						header("Location: pages/main.php?username=" . $_GET['username'] . "&selected=myFaces");
 					}
 				}

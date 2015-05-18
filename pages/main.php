@@ -1,3 +1,6 @@
+<?php
+	include 'masterpage.php';
+?>
 <html>
 	<head>
 		<title>
@@ -28,7 +31,6 @@
 	<body>
 	<div id="workspace">
 		<?php
-			var_dump(date("s"));
 			echo "<br>";
 			if(isset($_GET['selected'])){
 				if($_GET['selected'] != ''){
